@@ -1,0 +1,97 @@
+\subsection{Verschlüsselung}\label{subsec:verschluesselung}
+	Die Kryptographie, also Ver- und Entschlüsselungen von Informationen,
+	hat eine sehr lange Geschichte und lässt sich bis ins alte Ägypten zurückführen.
+	Konkret geht es mathematisch gesehen hierbei um eine Funktion oder auch Matrix,
+	welche den \enquote{Klartext} in einen \enquote{Geheimtext} umwandelt.
+	Dabei kann man die Zeichen des zu verschlüsselnden Textes entweder transponieren
+	oder mit anderen Zeichen substituieren.
+	Im besten Fall kann der \enquote{Geheimtext} dann nur mit dem Wissen über den Schlüssel
+	wieder in den \enquote{Klartext} umgewandelt werden.
+	Heutzutage unterscheidet man zwischen symmetrischen und asymmetrischen Verschlüsselungsverfahren,
+	welche aber häufig zusammen eingesetzt werden,
+	um die Rechenzeit zu verringern.
+	Da asymmetrische Verschlüsselungsverfahren sicherer sind,
+	aber viel mehr Zeit und Leistung benötigen,
+	werden diese häufig nur zur Schlüsselübergabe verwendet und
+	die Nutzdaten dann mit einem symmetrischen Verfahren verschlüsselt.
+
+	\subsubsection{Symmetrische Verschlüsselung}\label{subsubsec:symVersch}
+		Wie der Name schon sagt, erfolgen hierbei Chiffrierung und Dechiffrierung mit dem gleichen Schlüssel.
+		Dieses Verfahren wird auch \enquote{Private-Key-Verfahren} genannt,
+		da die Kommunikationspartner sicherstellen müssen, dass der gemeinsame Schlüssel privat,
+		also geschützt vor öffentlichen Zugriffen, bleibt.
+		Das erste bekannte Verfahren hierzu war die sogenannte \enquote{Caesar-Chiffre},
+		bei welcher das Alphabet gegeneinander verschoben wird.
+		Mathematisch ist die Verschlüsselung als $C_{K}(P) = (P + K) \bmod 26$ mit
+		$P$ als Buchstabe des \enquote{Klartextes},
+		$K$ als Anzahl der Verschiebung der Zeichen und
+		$C$ als chiffrierter Buchstabe darstellbar.
+		Die Entschlüsselung ist dann dementsprechend~$P_{K}(C) = (C - K) \bmod 26$.
+		Hierbei erkennt man schon,
+		dass sich ein solches Verfahren relativ einfach durchschauen lässt.
+		Der nächste Schritt war also, nicht mehr nur eine Funktion zu verwenden,
+		sondern ganze Algorithmen, welche mehrfach transponieren und substituieren.
+		Der aktuelle symmetrische Verschlüsselungsstandard ist der \gls{aes},
+		welcher im Oktober 2000 zertifiziert wurde und aus dem \gls{des} entstanden ist.
+		Die Technologie beruht auf der Blockverschlüsselung,
+		wobei einzelne Blöcke von 128, 192 oder 256 Bit verschlüsselt werden.
+		Durch die Schlüssellänge wird \gls{aes} als sehr sicher bezeichnet und
+		wird z.\ B.\ bei \gls{wpa2}, \gls{ssh} oder aber auch bei Komprimierungsverfahren wie \gls{7zip} verwendet.
+
+	\subsubsection{Asymmetrische Verschlüsselung}\label{subsubsec:asymVersch}
+		Die asymmetrische Verschlüsselung,
+		auch \enquote{Public-Key-Verfahren} genannt,
+		beruht auf der Verwendung von zwei statt nur einem Schlüssel.
+		Dabei ist einer der beiden Schlüssel öffentlich,
+		welcher zum Chiffrieren der Nachricht genutzt wird,
+		der andere ist privat und wird zum Dechiffrieren der Nachricht genutzt.
+		Dieses Verfahren funktioniert,
+		da sogenannte Einwegfunktionen existieren,
+		welche einfach zu berechnen aber schwierig umzukehren sind.
+		Beispiele für solche Funktionen sind Modulo Operationen,
+		Multiplizieren von Primzahlen oder Potenzieren.
+		Für alle diese Funktionen gilt,
+		dass $y = f(x)$ \enquote{einfach},
+		also in akzeptabler Zeit zu berechnen ist,
+		aber die Umkehrfunktion,
+		also $f^{-1}(y) = x$ schwierig und
+		nicht in akzeptabler Zeit ohne Vorkenntnis herausgefunden werden kann.
+		Von diesem Verfahren existieren nicht so viele,
+		wie bei den symmetrischen Chiffrierungen.
+		Die bekanntesten sind der~\nameref{p:DiffieHellmanMerkleSchluesselaustausch} und
+		die~\nameref{p:rsa} Verschlüsselung.
+		Beide Verfahren profitieren davon,
+		dass die oben erwähnten Einwegfunktionen auch mit \enquote{Falltür} existieren,
+		was bedeutet, dass man die Umkehrfunktion durch Kenntnis einer Variablen leichter berechnen kann.
+
+		\paragraph{Diffie-Hellman-Merkle Schlüsselaustausch}\label{p:DiffieHellmanMerkleSchluesselaustausch}
+			Beim Diffie - Hellman - Merkle Schlüsselaustausch,
+			häufig auch nur Diffie - Hellman genannt,
+			wird angenommen, dass das Potenzieren einer Zahl einfach,
+			jedoch das Logarithmieren schwierig ist.
+			Angenommen es gibt zwei Partner, \textbf{A} und \textbf{B},
+			welche sich auf zwei Zahlen verständigen,
+			eine Primzahl $p$ und eine Basis~$g$.
+			Des Weiteren generieren beide einen (zufälligen) privaten Schlüssel,
+			$a$ für Partner \textbf{A} und $b$ für Partner~\textbf{B}.
+			Diese Schlüssel werden dann genutzt,
+			um den öffentlichen Schlüssel von \textbf{A} mit $\alpha = g^{a}\bmod p$
+			und analog von \textbf{B} mit~$\beta = g^{b} \bmod p$ zu berechnen,
+			welche dann ausgetauscht werden.
+			Durch diesen Austausch und der Rechnung $\Psi = \beta^{a}\bmod p$,
+			oder für~\textbf{B} $\Psi =\alpha^{b}\bmod p$ haben beide Partner den gemeinsamen Schlüssel~$\Psi$.
+
+		\paragraph{RSA - Rivest, Shamir und Adleman}\label{p:rsa}
+			Die RSA Verschlüsselung beruht darauf,
+			dass die Primfaktorzerlegung großer Zahlen zu rechenaufwändig ist.
+			Seien nun wieder zwei Partner \textbf{A} und \textbf{B} beteiligt,
+			wobei dieses Mal \textbf{A} als Empfänger fungiert.
+			\textbf{A} wählt die (möglichst großen) Primzahlen $p$ und $q$,
+			berechnet daraus $n$ mit $n=p\cdot q$ und $\phi(n) = (p-1)\cdot (q-1)$
+			mit der~\glslink{eulerphi}{Eulerschen $\phi$-Funktion}.
+			Danach sucht \textbf{A} $e$ mit $ggT(e, \phi(n)) = 1$ und
+			berechnet im Anschluss $d$ mit~$d\cdot e\bmod \phi(n) = 1$.
+			Die beiden Zahlen $n$ und $e$ werden nun veröffentlicht und
+			der Sender der Nachricht, in diesem Falle \textbf{B},
+			kann diese jetzt mit $c = m^{e}\bmod n$ verschlüsseln.
+			Die Daten werden von \textbf{A} wieder mit $m = c^{d}\bmod n$ entschlüsselt.

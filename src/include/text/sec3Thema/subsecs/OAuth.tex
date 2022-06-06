@@ -1,0 +1,160 @@
+\subsection{OAuth}\label{subsec:oauth}
+	Die Bezeichnung OAuth bezieht sich auf zwei unterschiedliche Protokolle,
+	welche eine standardisierte,
+	sichere \gls{autorisierung} erlauben.
+	Die Version 1.0 des Protokolls wurde ab 2006 entwickelt
+	und 2010 von der \gls{ietf} veröffentlicht~\cite[Vgl.][]{rfc5849}.
+	Im Oktober 2012 wurde die Version 2.0 eingeführt~\cite[Vgl.][]{rfc6749},
+	welche heutzutage häufiger in Implementierungen zu finden ist.
+	Wichtig dabei ist,
+	dass die Versionen nicht kompatibel zueinander sind,
+	da sie beispielsweise andere Rollen spezifizieren,
+	auf welche im Folgenden näher eingegangen wird.
+	Des Weiteren ist das OAuth Protokoll 1.0 unabhängig von dem darunterliegenden Transportprotokoll,
+	während sich Version 2.0 vollkommen auf~\nameref{subsec:ssl} stützt.
+	Wer Version 1.0 nutzt,
+	muss sich also selbst um die Transportsicherheit kümmern,
+	kann allerdings jedes Transportprotokoll nutzen,
+	während 2.0 nur in Kombination mit \gls{https} genutzt werden kann.
+	Dies führt auch zu einem weiteren Aspekt,
+	dem der Benutzererfahrung.
+	Vor allem bezüglich dieses Unterschieds der Sicherheit ist Version 2.0 leichter zu implementieren
+	und benutzerfreundlicher,
+	daher wird es auch im Folgenden näher betrachtet.
+
+	\subsubsection{Beispiel}\label{subsubsec:beispiel}
+		Zur besseren Übersicht wird der Protokollfluss zuerst anhand eines Beispiels erläutert.
+		Es wird angenommen,
+		dass eine Applikation namens \enquote{Witz des Tages} existiert,
+		welche täglich einen Witz an registrierte E-Mail-Adressen verschickt.
+		Ein Benutzer möchte nun seine Bekannten an den Witzen teilhaben lassen
+		und die E-Mail-Adressen dieser auch dort eintragen.
+		Hierfür möchte er nicht alle Adressen eingeben,
+		da diese schon in seinem Kontaktbuch stehen.
+		Er hat sich über ein externes Programm an dieser Applikation angemeldet,
+		welches im Folgenden als \textbf{Authorization Server} dargestellt ist.
+
+		Der \textbf{Resource Owner} (Benutzer) schickt also eine initiale Anfrage an die \enquote{Witz des Tages} App.
+		Daraufhin fragt der \textbf{Client} (Applikation) beim \textbf{Authorization Server}
+		zusammen mit einigen Parametern
+		(\textbf{Client ID},~\textbf{Redirect \gls{uri}}, \textbf{Response Type} und \textbf{Scope})
+		den \textbf{Authorization Code} für die Weitergabe der E-Mail-Adressen an.
+		Der \textbf{Resource Owner} (Benutzer) wird jetzt gefragt,
+		ob er dem \textbf{Clienten} (Applikation) die angefragte Freigabe erteilen möchte,
+		worauf dieser zustimmt.
+		Im nächsten Schritt wird der \textbf{Resource Owner} (Benutzer) an den \textbf{Clienten} (Applikation)
+		über die \textbf{Redirect \gls{uri}},
+		zusammen mit dem generierten \textbf{Authorization Code},
+		zurückgeschickt.
+		Dieser kann dann damit beim \textbf{Authorization Server},
+		in Kombination mit \textbf{Client ID} und \textbf{Client Secret},
+		ein \textbf{Access Token} anfragen.
+		Hat der \textbf{Client} (Applikation) das \textbf{Access Token} erhalten,
+		schickt dieser dies nun an den \textbf{Resource Server}
+		und erhält im Austausch dafür die Kontakte.
+
+	\subsubsection{Terminologien}\label{subsubsec:terminologien}
+		In OAuth 2.0 existieren also einige Terminologien~\cite[Vgl.][]{rfc6749},
+		welche schon in das vorhergehende Beispiel eingearbeitet wurden.
+		Diese sind für das Verständnis des Protokolls erforderlich
+		und werden im Folgenden aufgeführt und näher erläutert.
+		\begin{itemize}
+			\item[\textbf{Resource Owner:}] Stellt eine Entität
+			(auch \enquote{end-user} genannt, falls es eine Person ist) dar,
+			welche Zugriff zu einer geschützten Resource gewährleisten kann.
+
+			\item[\textbf{Client:}] Eine Anwendung,
+			welche die geschützte Resource im Namen
+			des \textbf{Resource Owners} mit dessen Autorisierung anfragt.
+			Dieser Terminus impliziert nicht,
+			auf welchem System die Anfrage ausgeführt wird.
+
+			\item[\textbf{Authorization Server:}] Dieser Server \glslink{authentifizierung}{authentifiziert}
+			den \textbf{Resource Owner} und stellt dem \textbf{Clienten} Token aus.
+
+			\item[\textbf{Resource Server:}] Ein Server,
+			auf welchem diese geschützten Ressourcen liegen.
+			Zudem ist dieser dazu in der Lage,
+			auf Access Token zu antworten und diese zu akzeptieren.
+
+			\item[\textbf{Redirect \gls{uri}:}] Eine \gls{url},
+			auf die der \textbf{Resource Owner} zurückgeschickt wird,
+			nachdem dem \textbf{Clienten} die Erlaubnis erteilt wurde.
+
+			\item[\textbf{Response Type:}] Der vom \textbf{Clienten} erwartete Typ der Information.
+			Meistens ist dies ein~\textbf{Authorization Code}.
+
+			\item[\textbf{Scope:}] Beschreibt die vom \textbf{Clienten} angefragten Informationen.
+			(Bsp.: Die E-Mail-Adressen der Bekannten auslesen und weitergeben.)
+
+			\item[\textbf{Consent:}] Der \textbf{Authorization Server} fragt
+			den \textbf{Resource Owner} nach einer Zustimmung,
+			ob der \textbf{Client} die angefragten Informationen benutzen darf.
+			(Bsp.: \enquote{Die Applikation möchte die E-Mail-Adressen aus dem Kontaktbuch auslesen.
+			Zulassen / Verweigern})
+
+			\item[\textbf{Client ID:}] Eine ID für die Identifizierung des
+			\textbf{Clienten} beim~\textbf{Authorization Server}.
+
+			\item[\textbf{Client Secret:}] Stellt ein geheimes Passwort dar,
+			welches nur \textbf{Client} und \textbf{Authorization Server} kennen.
+			Dies wird genutzt, um private Informationen zu teilen.
+
+			\item[\textbf{Authorization Code:}] Ein temporärer Code,
+			welcher vom \textbf{Clienten} an den \textbf{Authorization Server} gegeben wird.
+			Der \textbf{Client} erhält dafür ein~\textbf{Access Token}.
+
+			\item[\textbf{Access Token:}] Wie der Name schon andeutet,
+			beinhaltet dieses Token spezifische Bereiche
+			und die Dauer des gewährten Zugangs.
+			Um auf eine Resource zuzugreifen,
+			muss dieses Token vom Clienten an den \textbf{Resource Server}
+			als \gls{autorisierung} übermittelt werden.
+
+			\item[\textbf{Refresh Token:}] Das Refresh Token wird verwendet,
+			um beim~\enquote{Authorization Server} ein neues Access Token anzufragen,
+			falls das vorherige abgelaufen ist.
+			Dadurch kann man die Lebensdauer des Access Tokens kürzer gestalten,
+			was die Sicherheit dieses Protokolls erheblich erhöht.
+			Ein Angreifer kann sich selbst mit Kenntnis des Access Tokens nur
+			in einem gewissen Zeitraum als der eigentliche
+			\glslink{autorisierung}{autorisierte} Nutzer ausgeben,
+			da das Token seine Gültigkeit verliert.
+
+		\end{itemize}
+
+	\subsubsection{Ablauf der Autorisierung}\label{subsubsec:ablauf-der-autorisierung}
+		Der abstrakte Ablauf einer \gls{autorisierung} stellt sich dabei,
+		wie in Abbildung~\ref{fig:oauthAbstractFlow} zu sehen ist, dar:
+		\begin{enumerate}[(A)]
+			\item Der \textbf{Client} beantragt \gls{autorisierung} vom~\textbf{Resource Owner}.
+			Diese Anfrage kann entweder direkt an den \textbf{Resource Owner} gestellt werden,
+			oder besser indirekt an den~\textbf{Authorization Server}.
+
+			\item Der \textbf{Resource Owner} antwortet mit einer
+			\glslink{autorisierung}{Autorisierungsgenehmigung},
+			welche eine aus vier zugelassenen Typen sein kann,
+			die jeweils abhängig von den unterstützten Typen des \textbf{Authorization Servers} sind.
+
+			\item Der \textbf{Client} fordert ein Access Token beim \textbf{Authorization Server} an
+			und schickt die vorher erhaltene \glslink{autorisierung}{Autorisierungsgenehmigung} mit.
+
+			\item Der \textbf{Authorization Server} \glslink{authentisierung}{authentisiert}
+			den \textbf{Clienten},
+			validiert die \glslink{autorisierung}{Autorisierungsgenehmigung} und
+			erstellt ein Access Token.
+
+			\item Der \textbf{Client} fragt die Resource beim \textbf{Resource Server} an
+			und \glslink{authentifizierung}{authentifiziert} sich mit dem Access Token.
+
+			\item Der \textbf{Resource Server} prüft das Token und gibt Zugriff auf die Resource.
+
+		\end{enumerate}
+
+		\bigskip\noindent
+		Der Ablauf der \gls{autorisierung} ist also meistens nicht genau so,
+		wie die Abbildung~\nameref{fig:oauthAbstractFlow} zeigt.
+		Bei den meisten Implementierungen interagiert der \textbf{Resource Owner}
+		tatsächlich nur zu Anfang mit dem Clienten,
+		danach folgt eine Interaktion zwischen \textbf{Authorization Server} und~\textbf{Resource Owner},
+		wonach der \textbf{Authorization Code} an den \textbf{Clienten} geschickt wird.

@@ -1,0 +1,43 @@
+\section{Zusammenfassung und Ausblick}\label{sec:zusammenfassung-und-ausblick}
+	\enquote{Einfach Einloggen und Herunterladen.}
+	Für den einen oder anderen Leser der Seminararbeit mag das Wort \enquote{einfach}
+	in diesem Satz mittlerweile ziemlich beschönigend aussehen.
+	Sicherlich bekommen Anwender eher weniger davon mit,
+	aber Anwendungsentwickler und Sicherheitsexperten müssen sich
+	mit dem gar nicht so einfachen Thema dann doch auseinandersetzen.
+	Zusammenfassend kann also gesagt werden,
+	dass die Seminararbeit die theoretischen Grundlagen
+	--- wenn auch nur oberflächlich ---
+	einer Datenübertragung über das Internet aufzeigt
+	und Basiswissen über~\hyperref[subsec:verschluesselung]{Kryptographie} bereitstellt.
+	Damit wurden die beiden ersten Ziele,
+	die Datenübertragung über das Internet im Ansatz zu verstehen und
+	verschiedene Architekturen zur Realisierung dieser kennenzulernen,
+	abgedeckt.
+
+	Das zweite Kapitel handelte von einigen Verfahren zur Absicherung des Vorhergehenden
+	und erfüllte damit das Ziel,
+	die Wichtigkeit
+	und Notwendigkeit der Absicherung eines Informationsaustauschs aufzufassen.
+	Zuerst wurde die in \gls{http} integrierte \gls{authentifizierung} exemplarisch mit drei Varianten vorgestellt.
+	Danach kamen kurz die~\nameref{subsec:api-keys},
+	wobei bei beiden Verfahren darauf zu achten war,
+	dass zwingend \gls{https} verwendet werden muss,
+	um diese als sicher einstufen zu können.
+	Das~\nameref{subsec:oauth},
+	als relativ neues Protokoll,
+	und~\nameref{subsec:openid-connect} als zusätzliche Schicht dazu,
+	rundete das Kapitel ab.
+
+	Für eine tatsächliche Implementierung eines~\nameref{subsec:web-services} mit beschränkten Zugriffsrechten
+	und nur einer einmaligen Anmeldung eines Clienten würde sich
+	eine~\hyperref[subsec:rest]{RESTful} \gls{api} anbieten,
+	da diese um einiges leichtgewichtiger ist
+	und momentan die bevorzugte Wahl großer Anbieter darstellt.
+
+	Die Absicherung könnte dann entweder über eine Form der~\nameref{subsec:http-authentication},
+	über die ähnlichen~\nameref{subsec:api-keys}
+	oder eben über~\nameref{subsec:openid-connect} funktionieren.
+	Welches Verfahren sich aber tatsächlich dazu eignet
+	und vor allem den vorgegebenen Richtlinien entspricht,
+	muss vor der Umsetzung noch einmal ausführlich diskutiert werden.

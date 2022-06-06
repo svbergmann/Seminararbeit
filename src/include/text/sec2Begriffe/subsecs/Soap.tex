@@ -1,0 +1,107 @@
+\subsection{SOAP}\label{subsec:soap}
+	Das \gls{soap}, zu Deutsch \enquote{einfaches Objektzugriffsprotokoll}, ist ein Protokoll,
+	welches in einer dezentralen Umgebung für den Austausch von Informationen
+	zwischen verschiedenen Systemen genutzt werden kann.
+	Es wurde ursprünglich von Microsoft entwickelt, um alte Übertragungstechnologien,
+	wie beispielsweise das \gls{dcom} oder die \gls{corba}, zu ersetzen.
+	\gls{soap} wurde als sehr flexibles, erweiterbares,
+	aber auch leichtgewichtiges Protokoll entwickelt,
+	weshalb auch häufig Abkürzungen, wie zum Beispiel \gls{ws-security},
+	\gls{ws-reliableMessaging} oder \gls{ws-addressing} damit assoziiert werden.
+	Es umfasst gewisse Regeln,
+	welche die zu verschickenden Informationen komplexer machen und \gls{overhead} produzieren,
+	jedoch für einen gewissen Standard sorgen,
+	welchen jede \gls{soap} \gls{api} versteht.
+	Dieses Verfahren befindet sich seit 2007 in der Version 1.2
+	und wurde als offizielles Protokoll von der \gls{w3c} definiert~\cite[Vgl.][]{SOAP_W3C}.
+
+	Damit ein \gls{soap} Web Service funktionieren kann,
+	muss dieser ein \gls{wsdl} Dokument bereitstellen.
+	In diesem Dokument befinden sich alle Informationen über die angebotenen Methoden,
+	die Parameter und die Rückgabewerte dieser und wie der Kontakt hergestellt werden kann.
+	Dieses auf \gls{xml} basierende Dokument ist für jeden (zugelassenen) Nutzer einsehbar,
+	womit alle Funktionen genutzt werden können.
+
+	Die Zustellung einer \gls{soap} Nachricht kann mit dem Prinzip einer Hauspost verglichen werden.
+	Der abgeschickte Brief kommt zuerst im Sekretariat (\gls{soap} Dispatcher) an,
+	wo dieser dann geöffnet wird, um den richtigen Empfänger zu bestimmen.
+	Die Nachricht wird dann an den eigentlichen Empfänger weitergeleitet,
+	womit dieser dann darauf antworten kann.
+	Der Client kann also nicht direkt mit dem Server kommunizieren,
+	da alle Nachrichten immer vom Dispatcher gefiltert werden.
+	Bei \gls{soap} in Kombination mit~\nameref{subsubsec:http} weist diese Nachricht
+	\gls{http} POST als Methode auf und
+	stellt diesen Request immer an dieselbe Adresse,
+	was in Abbildung~\ref{fig:soapKommunikation} gezeigt ist.
+
+	Listing~\ref{lst:SOAPListing} stellt ein Beispiel einer \gls{soap} Nachricht dar.
+	Man sieht, dass hier drei Elemente definiert sind,
+	welche im Folgenden näher erläutert werden.
+
+	\subsubsection{Envelope}\label{subsubsec:soapEnvelope}
+		Der Envelope funktioniert quasi als \enquote{Briefumschlag},
+		welcher zwingend in dem zu übermittelnden Dokument angegeben sein muss.
+		Das Element \textit{kann}, wie in Listing~\ref{lst:SOAPListing} gezeigt,
+		ein Attribut zur Definition des Namensraums enthalten.
+		Des Weiteren \textit{darf} es zusätzliche Attribute,
+		wie zum Beispiel das Encoding, beinhalten,
+		welche aber durch den vorhergehenden Namensraum qualifiziert sein müssen.
+		Der~\nameref{subsubsec:soapBody} \textit{muss} als Kind Element vorhanden sein,
+		jedoch \textit{kann} davor noch ein~\nameref{subsubsec:soapHeader} stehen.
+		Alle weiteren Attribute \textit{müssen} nach dem~\nameref{subsubsec:soapBody} eingefügt werden.
+
+		Da \gls{soap} keine traditionelle Versionierung bereitstellt,
+		\textit{muss} ein Envelope den Namensraum \enquote{\url{http://schemas.xmlsoap.org/soap/envelope/}} referenzieren.
+		Falls eine Nachricht mit einem anderen Namensraum, als dem des Programmes empfangen wird,
+		muss die Applikation dies als \enquote{Version Error} behandeln und die Nachricht verwerfen.
+		Wenn die Nachricht aber mit einem Frage/Antwort Protokoll (wie beispielsweise~\nameref{subsubsec:http}) geschickt wurde,
+		muss auf die Nachricht mit einem \enquote{\gls{soap} VersionMismatch} Fehlercode geantwortet werden.
+
+	\subsubsection{Header}\label{subsubsec:soapHeader}
+		Falls der \gls{soap} Header existiert,
+		\textit{muss} dieser das erste Kind Element des~\hyperref[subsubsec:soapEnvelope]{Envelopes} sein.
+		Alle Kinder des Header Elements werden \enquote{Header Entries} genannt.
+		Jedes dieser Elemente muss mit seinem Namensraum \gls{uri} und dem lokalen Namen voll identifizierbar sein,
+		wobei der Namensraum immer gesetzt sein~\textit{muss}.
+		Ansonsten existieren noch das~\nameref{p:soapEncodingStyle},
+		~\nameref{p:soapMustUnderstand} und~\nameref{p:soapActor} Attribut,
+		welche alle genutzt werden~\textit{können}.
+
+		\paragraph{EncodingStyle}\label{p:soapEncodingStyle}
+			Dieses Attribut definiert, mit welchen Regeln die Nachricht serialisiert wurde.
+			Es \textit{kann} in jedem Element präsent sein und ist dann für alle Elemente innerhalb dieses Baumes verantwortlich,
+			außer diese haben selbst jenes Attribut definiert.
+
+			Der Wert stellt sich als eine geordnete Liste von einem oder mehreren \glspl{uri} dar,
+			welche Regeln zur Deserialisierung beinhalten.
+			Diese Liste ist nach absteigender Genauigkeit sortiert.
+
+		\paragraph{Actor}\label{p:soapActor}
+			Der \gls{soap} actor \textit{kann} genutzt werden,
+			um den Empfänger eines~\nameref{subsubsec:soapHeader} Elements zu kennzeichnen.
+			Dies ist zwingend notwendig damit die Nachricht effektiv sein kann,
+			da die Nachrichten durch eine große Menge an \gls{soap} Vermittlern geleitet wird,
+			welche diese entweder empfangen oder weiterleiten können.
+			Daher sind nicht alle Teile sinnvoll oder bestimmt für das endgültige Ziel dieser Nachricht,
+			sondern können weitergeleitet und auch verändert werden.
+			Die Applikation, welche Attribute verändert hat,
+			ist dann der neue \enquote{Partner} des finalen Empfängers.
+
+		\paragraph{MustUnderstand}\label{p:soapMustUnderstand}
+			Dieses Attribut \textit{kann} genutzt werden,
+			um dem Leser zu signalisieren,
+			ob dieser den Eintrag verpflichtend oder optional verarbeiten muss.
+			Falls der Wert auf 1 steht,
+			\textit{muss} der Empfänger entweder das Element korrekt nach den Richtlinien verarbeiten
+			oder bei der Weiterverarbeitung der Nachricht fehlschlagen.
+			Um die Effektivität der Nachrichtenverarbeitung gewährleisten zu können,
+			muss dieses Attribut ebenfalls gesetzt sein.
+
+	\subsubsection{Body}\label{subsubsec:soapBody}
+		Der Body einer \gls{soap} Nachricht \textit{muss} direkt nach dem~\nameref{subsubsec:soapHeader} folgen,
+		falls dieser präsent ist,
+		andernfalls \textit{muss} er das erste Element sein.
+		Dieses Element stellt einen simplen Mechanismus zur Informationsübertragung für den finalen Empfänger der Nachricht bereit.
+		Äquivalent zum~\nameref{subsubsec:soapHeader} nennt man auch hier die Kind-Elemente \enquote{Body Entries},
+		welche mit deren Namensraum \glspl{uri} und den lokalen Namen voll identifizierbar sein~\textit{müssen}.
+		Des Weiteren \textit{kann} der~\nameref{p:soapEncodingStyle} definiert werden.

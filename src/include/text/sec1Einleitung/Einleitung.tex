@@ -1,0 +1,48 @@
+\section{Einleitung}\label{sec:einleitung}
+
+	\enquote{Einfach einloggen und herunterladen.}
+	--- Ein Satz, der im alltäglichen Leben immer mehr an Bekanntheit gewinnt.
+	Doch wie funktioniert dieses \enquote{Einloggen und Herunterladen} eigentlich?
+	Wie kann gewährleistet werden,
+	dass die zu übermittelnden Daten sicher übertragen werden,
+	oder die Identität des Benutzers nicht gestohlen wird?
+	Wie werden überhaupt Daten übertragen?
+	Was sind verteilte Systeme?
+	All diese Fragen sollen im Folgenden zumindest ansatzweise beantwortet werden.
+	Die Ziele dieser Arbeit werden demnach sein,
+	die Datenübertragung über das Internet im Ansatz zu verstehen,
+	verschiedene Architekturen zur Realisierung dieser kennenzulernen
+	und darüber hinaus die Wichtigkeit und Notwendigkeit der Absicherung dieser aufzufassen.
+
+	Da das Netzwerkprotokoll \gls{www} und damit auch das \gls{http} schon seit 1989 existieren,
+	eignet sich eine Literaturarbeit zur Darlegung des Themas am besten.
+	Im ersten Kapitel werden anfangs die grundlegenden Funktionsweisen
+	und programmiertechnischen Hintergründe definiert
+	und erläutert,
+	wie ein Datentransfer tatsächlich funktionieren kann.
+	Danach werden auf Basis dessen ausgewählte Architekturstile aufgezeigt und verglichen.
+	Da für eine sichere Kommunikation eine Verschlüsselung unerlässlich ist,
+	folgen Erklärungen und Definitionen über Kryptographie.
+	Dieser eher theoretische Einschub führt einerseits zu einem Verfahren,
+	welches einen sicheren Informationsaustausch gewährleisten kann,
+	und andererseits zur Definition des Begriffes~\enquote{Web-Security}.
+
+	Das Kapitel~\nameref{sec:absicherung-des-informationsaustauschs} behandelt verschiedene \glspl{framework},
+	die für die \gls{authentifizierung},
+	unter Benutzung der vorhergehenden Protokolle und Grundlagen,
+	genutzt werden können.
+	Hierbei werden auch die Einsatzgebiete dieser erläutert.
+	Die Arbeit wird mit einer Zusammenfassung abgerundet und es wird ein Ausblick darauf gegeben,
+	wie diese zu der Entscheidung beigetragen hat,
+	welche Verfahren und welche Architekturen in die engere Auswahl
+	für die Implementierung eines Web-Services kommen.
+
+	Die Literatur dieser Arbeit besteht ausnahmslos aus Online-Quellen,
+	da das Thema mit der Entstehung des Internets verwurzelt ist
+	und daher fast ausschließlich alles online zu finden ist.
+	Hierbei spielt die Reihe \enquote{Request for Comments} eine große Rolle,
+	in welcher viele Protokolle definiert sind.
+	Ebenso stellt das \gls{w3c} auch einige Definitionen bereit.
+	Nahezu alle Quellen haben gemeinsam,
+	dass bei der Erklärung die Sprachkonventionen laut RFC 2119~\cite{rfc2119} genutzt werden,
+	was im Folgenden durch eine \textit{kursive} Schrift angezeigt wird.

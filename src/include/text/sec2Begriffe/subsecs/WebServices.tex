@@ -1,0 +1,46 @@
+\subsection{Web Services}\label{subsec:web-services}
+	Die Definition eines Web Services ist laut dem \gls{w3c}
+	folgende~\cite{WebServiceW3C}:
+	\begin{displayquote}
+		A Web service is a software system designed to support interoperable machine-to-machine interaction over a network.
+		It has an interface described in a machine-processable format (specifically WSDL).
+		Other systems interact with the Web service in a manner prescribed by its description using SOAP messages,
+		typically conveyed using HTTP with an XML serialization in conjunction with other Web-related standards.
+	\end{displayquote}
+	Unter einem Web Service versteht man also ein Softwaresystem,
+	welches dafür da ist,
+	die Maschine-zu-Maschine Kommunikation über ein Netzwerk zu realisieren.
+	Dieses System stellt eine Schnittstelle bereit,
+	die in einem maschinenlesbaren Format,
+	genauer \gls{wsdl},
+	beschrieben ist.
+	Andere Systeme können dann über sogenannte \gls{soap} Nachrichten mit dem Service kommunizieren.
+	Typischerweise werden diese Botschaften über~\nameref{subsubsec:http} Methoden,
+	unter Benutzung einer \gls{xml} Serialisierung,
+	in Verbindung mit anderen web-bezogenen Standards,
+	übermittelt. \par
+	Aus dieser Definition folgt unter anderem,
+	dass ein Web Service ein oder mehrere Dienste bereitstellt,
+	welche über das Web in Anspruch genommen werden können.
+	Jeder Web Service besitzt auch immer einen \gls{uri},
+	mit dem dieser eindeutig identifiziert werden kann.
+	Wie oben schon genannt,
+	erfolgt die Kommunikation mit Web Services ausschließlich zwischen Maschinen,
+	womit diese zu Webanwendungen stark abgegrenzt werden,
+	bei denen wiederum eine menschliche Interaktion erfolgt.
+	Außerdem gibt es zwei Eigenschaften,
+	die für die Popularität der Web Services entscheidend sind.
+
+	\paragraph{Plattformunabhängigkeit}
+		Client und Server (in diesem Fall der Web Service) können unabhängig
+		von ihrer jeweiligen Konfiguration miteinander kommunizieren.
+		So kann ein Client, welcher unter Linux läuft,
+		beispielsweise problemlos mit einem Windows Server interagieren und umgekehrt.
+		Daraus folgt auch,
+		dass es eine Schnittstelle zwischen beiden Maschinen geben muss,
+		die einheitlich ist.
+		Meistens übertragen die Kommunikationspartner die Daten über \gls{xml}, \gls{json} oder ähnliche Strukturen.
+
+	\paragraph{Verteilt}
+		Ein Server stellt seinen Dienst nicht nur für genau einen Clienten bereit,
+		sondern muss auch mehrere Clienten bedienen können.

@@ -1,0 +1,72 @@
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Rectangle [id:dp6713021135531445] 
+	\draw   (20,40) -- (130.45,40) -- (130.45,260) -- (20,260) -- cycle ;
+%Shape: Rectangle [id:dp9488356654027563] 
+	\draw   (270,41) -- (400,41) -- (400,261) -- (270,261) -- cycle ;
+%Shape: Rectangle [id:dp051438042119226646] 
+	\draw   (430,41) -- (550,41) -- (550,261) -- (430,261) -- cycle ;
+%Rounded Rect [id:dp025938333082131892] 
+	\draw   (32.27,62) .. controls (32.27,55.37) and (37.65,50) .. (44.27,50) -- (106.18,50) .. controls (112.81,50) and (118.18,55.37) .. (118.18,62) -- (118.18,98) .. controls (118.18,104.63) and (112.81,110) .. (106.18,110) -- (44.27,110) .. controls (37.65,110) and (32.27,104.63) .. (32.27,98) -- cycle ;
+%Rounded Rect [id:dp6746062988145041] 
+	\draw   (32.27,132) .. controls (32.27,125.37) and (37.65,120) .. (44.27,120) -- (106.18,120) .. controls (112.81,120) and (118.18,125.37) .. (118.18,132) -- (118.18,168) .. controls (118.18,174.63) and (112.81,180) .. (106.18,180) -- (44.27,180) .. controls (37.65,180) and (32.27,174.63) .. (32.27,168) -- cycle ;
+%Rounded Rect [id:dp3846676301494929] 
+	\draw   (32.27,202) .. controls (32.27,195.37) and (37.65,190) .. (44.27,190) -- (106.18,190) .. controls (112.81,190) and (118.18,195.37) .. (118.18,202) -- (118.18,238) .. controls (118.18,244.63) and (112.81,250) .. (106.18,250) -- (44.27,250) .. controls (37.65,250) and (32.27,244.63) .. (32.27,238) -- cycle ;
+%Rounded Rect [id:dp803526501517456] 
+	\draw   (280,132) .. controls (280,125.37) and (285.37,120) .. (292,120) -- (368,120) .. controls (374.63,120) and (380,125.37) .. (380,132) -- (380,168) .. controls (380,174.63) and (374.63,180) .. (368,180) -- (292,180) .. controls (285.37,180) and (280,174.63) .. (280,168) -- cycle ;
+%Shape: Rectangle [id:dp10324218660152407] 
+	\draw   (440,51) -- (540,51) -- (540,111) -- (440,111) -- cycle ;
+%Shape: Rectangle [id:dp9289733601126315] 
+	\draw   (440,121.5) -- (540,121.5) -- (540,181) -- (440,181) -- cycle ;
+%Shape: Rectangle [id:dp060786979153347964] 
+	\draw   (440,191) -- (540,191) -- (540,251) -- (440,251) -- cycle ;
+%Straight Lines [id:da4074949520827229] 
+	\draw    (150,150) -- (278,150) ;
+	\draw [shift={(280,150)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da18649676798360515] 
+	\draw    (380,150) -- (438.69,82.51) ;
+	\draw [shift={(440,81)}, rotate = 491.01] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da882291870882637] 
+	\draw    (380,150) -- (438,150.97) ;
+	\draw [shift={(440,151)}, rotate = 180.95] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da06798859261533052] 
+	\draw    (380,150) -- (438.71,219.47) ;
+	\draw [shift={(440,221)}, rotate = 229.8] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da09553391086743068] 
+	\draw    (120,80) -- (149.21,148.16) ;
+	\draw [shift={(150,150)}, rotate = 246.8] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da8931516225216165] 
+	\draw    (120,220) -- (149.21,151.84) ;
+	\draw [shift={(150,150)}, rotate = 473.2] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da2835861250266003] 
+	\draw    (120,150) -- (148,150) ;
+	\draw [shift={(150,150)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+
+% Text Node
+	\draw (21,21) node [anchor=north west][inner sep=0.75pt]   [align=left] {Client};
+% Text Node
+	\draw (271,21) node [anchor=north west][inner sep=0.75pt]   [align=left] {Web Server};
+% Text Node
+	\draw (431,22) node [anchor=north west][inner sep=0.75pt]   [align=left] {Server/Objekte};
+% Text Node
+	\draw (34.27,65) node [anchor=north west][inner sep=0.75pt]   [align=left] {Proxy\\Artikel};
+% Text Node
+	\draw (34,132) node [anchor=north west][inner sep=0.75pt]   [align=left] {Proxy \\Warenkorb};
+% Text Node
+	\draw (34,202) node [anchor=north west][inner sep=0.75pt]   [align=left] {Proxy \\Kunde};
+% Text Node
+	\draw (291,141) node [anchor=north west][inner sep=0.75pt]   [align=left] {/soap/router};
+% Text Node
+	\draw (450,72) node [anchor=north west][inner sep=0.75pt]   [align=left] {getDetails()};
+% Text Node
+	\draw (452,142) node [anchor=north west][inner sep=0.75pt]   [align=left] {getPreis()};
+% Text Node
+	\draw (451,212) node [anchor=north west][inner sep=0.75pt]   [align=left] {getStatus()};
+% Text Node
+	\draw (151,132) node [anchor=north west][inner sep=0.75pt]  [font=\small] [align=left] {POST soap/router};
+% Text Node
+	\draw (270,92) node [anchor=north west][inner sep=0.75pt]   [align=left] {SOAP Dispatcher};
+
+
+\end{tikzpicture}

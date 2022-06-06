@@ -1,0 +1,69 @@
+\documentclass[
+	listof=totoc,
+	numbers=noenddot
+]{scrartcl}
+\setcounter{tocdepth}{\subsectiontocdepth}
+
+\include{include/preamble}
+
+\begin{document}
+
+	\hypersetup{pageanchor=false}
+	\include{include/titlepage}
+	\NewPage
+
+	\addtocounter{table}{-1}
+
+	\include{include/text/sec0Abstract/Abstract}
+
+	\NewPage
+
+	\tableofcontents
+
+	\pagebreak
+
+	\newcounter{savepage}
+	\pagenumbering{Roman}
+	\setcounter{page}{1}
+	\hypersetup{pageanchor=true}
+
+	\printnoidxglossary[type=\acronymtype, style=long]
+
+	\pagebreak
+
+	\printnoidxglossary[type=main, style=list, nonumberlist]
+
+	\pagebreak
+
+	\listoffigures
+
+	\pagebreak
+
+	\glsresetall
+	\setcounter{savepage}{\arabic{page}}
+	\pagenumbering{arabic}
+	\pagestyle{scrheadings}
+
+	\include{include/text/sec1Einleitung/Einleitung}
+	\include{include/text/sec2Begriffe/BegriffsdefinitionenUndAbgrenzungen}
+	\include{include/text/sec3Thema/AbsicherungInfotausch}
+	\include{include/text/sec4Zusammenfassung/ZusammenfassungUndAusblick}
+
+	\NewPage
+	\pagenumbering{Roman}
+	\setcounter{page}{\thesavepage}
+	\pagestyle{empty}
+
+	\printbibliography[heading=bibintoc,title=Literaturverzeichnis]
+
+	\pagebreak
+
+	\include{include/text/appendix/Anhang}
+
+	\NewPage
+
+	\includepdf{include/offizielleVorlagen/EidesstattlicheErklaerung.pdf}
+
+	\glsaddallunused
+
+\end{document}

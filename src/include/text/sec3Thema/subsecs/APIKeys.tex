@@ -1,0 +1,15 @@
+\subsection{API Keys}\label{subsec:api-keys}
+	Als \gls{api} Key wird ein einmalig generierter Schlüssel bezeichnet,
+	welcher bei der ersten Verbindung des Clienten mit dem Server erstellt wird.
+	Dieser Schlüssel kann entweder in einem POST-Request als Request-Query,
+	oder in einem GET-Request als Header,
+	oder Cookie,
+	geschickt werden.
+	Dabei kann der Schlüssel für die \gls{authentisierung} genutzt werden,
+	aber nicht für die \gls{authentifizierung},
+	was bedeutet,
+	dass der Server dann weiß,
+	mit wem er kommuniziert,
+	den Clienten aber nicht auf seine Rechte überprüft.
+	Dieses Verfahren ist ebenfalls nur im Kontext von \gls{https} sicher,
+	da ansonsten theoretisch sehr einfach der übermittelte Schlüssel abgegriffen werden könnte.

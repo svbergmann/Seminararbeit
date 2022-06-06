@@ -1,0 +1,87 @@
+\subsection{HTTP Authentication}\label{subsec:http-authentication}
+	Die wohl einfachste Methode,
+	eine \gls{authentifizierung} über das~\nameref{subsubsec:http} durchzuführen,
+	ist es,
+	ein schon vorhandenes Verfahren zu nutzen.
+	Dieses ist in RFC 7235~\cite[Vgl.][]{rfc7235} spezifiziert und
+	basiert auf einem einfachen \enquote{challenge-response} Modell,
+	wobei die~\enquote{challenge} die Frage nach dem korrekten Passwort und
+	die~\enquote{response} die Antwort mit dem korrekten Passwort darstellt.
+	Der Client bekommt für jede Anfrage an einen Bereich,
+	welcher eine \gls{autorisierung} benötigt,
+	den Status-Code 401 (Unauthorized) vom Server zugeschickt.
+	Zusätzlich muss der Server noch einige Header-Felder füllen und mitsenden,
+	um dem Clienten unter anderem die
+	\glslink{authentifizierung}{Authentifizierungsmethode} mitzuteilen.
+	Das Feld \enquote{WWW-Authenticate} \textit{muss} zuerst die Methode
+	und danach mindestens eine \enquote{challenge} enthalten,
+	in welcher der Bereich spezifiziert ist.
+	Um nicht immer wieder die Nutzerdaten
+	\glslink{authentifizierung}{authentifizieren} zu müssen,
+	gibt es noch das Feld \enquote{Authorization},
+	welches in der Form \enquote{Authorization = credentials} die Informationen beinhaltet.
+	Damit kann der Server dem Clienten Zugang zu weiteren Bereichen
+	mit der gleichen \glslink{authentifizierung}{Authentifizierungsmethode} gewähren.
+	Theoretisch gibt es noch zwei Proxy Felder,
+	welche hier jedoch vernachlässigt werden.
+
+	Im Folgenden werden ausgewählte Schemata aufgezeigt,
+	die bei dieser Art der \gls{authentifizierung} genutzt werden können.
+
+	\subsubsection{HTTP Basic Authentication}\label{subsubsec:http-basic-authentication}
+		Die sogenannte \enquote{\gls{http} Basic Authentication}~\cite[Vgl.][]{rfc7617},
+		setzt den Benutzernamen und das übergebene Passwort in der Form \enquote{BENUTZER:PW} zusammen,
+		kodiert alles mit \gls{base64} und schickt es an den Server.
+		Als \enquote{challenges} werden hierbei der Bereichsname,
+		mit \enquote{realm=<Bereichsname>},
+		und ein optionaler Parameter \enquote{charset},
+		welcher das Kodierungsschema angibt,
+		erwartet.
+		Alle anderen Parameter müssen ignoriert werden.
+
+		Diese Methode wird nur in Verbindung mit \gls{https} als sicher gewertet,
+		da die Passwörter ansonsten quasi im Klartext mitgelesen werden können.
+
+	\subsubsection{HTTP Digest Access Authentication}\label{subsubsec:http-digest-access-authentication}
+		Die Antwort des Servers beinhaltet bei diesem Schema im \enquote{WWW-Authenticate} Header,
+		neben Bereich und Namen,
+		auch \enquote{qop}, \enquote{nonce} und~\enquote{opaque}.
+		Der \enquote{Quality of Protection (qop)} Parameter \textit{muss} gesetzt sein und
+		beschreibt die Sicherheitsqualität des Servers.
+		Werte hierfür können \enquote{auth} für \gls{authentifizierung} und/oder
+		\enquote{auth-int} für \gls{authentifizierung} mit Integritätsschutz sein.
+		Ein einzigartiger, vom Server generierter \gls{string} wird \enquote{nonce} zugewiesen,
+		der bei jeder \enquote{401} Response neu generiert wird.
+		Die Inhalte dieser Zeichenfolge sind abhängig von der Implementierung,
+		könnten aber beispielsweise etwas wie
+		\enquote{timestamp : ETag : secret-data}~\cite[Vgl.][]{rfc7616} sein,
+		was mit \gls{base64} kodiert wird.
+		Der \enquote{opaque} Wert ist ebenfalls ein vom Server generierter
+		\gls{string} (\gls{base64} oder hexadezimal),
+		welcher einfach unverändert vom Clienten für den gleichen Bereich zurückgeschickt wird.
+		Zur besseren Übersicht werden alle Werte,
+		mit denen der Client antwortet,
+		in Tabelle~\ref{tab:httpdigestclientresponse} dargestellt und erklärt.
+
+		Falls der Server nun einen erfolgreichen Datenabgleich durchgeführt hat
+		und der Client so \glslink{authentifizierung}{authentifiziert} werden konnte,
+		wird ein \enquote{200 OK} Code mit der gewünschten Seite/
+		dem gewünschten Inhalt zurückgeschickt.
+
+	\subsubsection{NTLM HTTP Authentication}\label{subsubsec:ntlm-http-authentication}
+		Das ursprünglich von Microsoft entwickelte NTLM Schema bietet eine weitere Anmeldemöglichkeit auf Servern,
+		unter anderem mit dem \gls{singleSignOn} in Kombination mit einer Windows-Benutzeranmeldung.
+		Bei diesem Schema wird als Antwort auf die Anfrage einer Resource
+		der \enquote{WWW-Authenticate} Header mit dem Namen der \enquote{challenge} zurückgeschickt.
+		Der Client schickt daraufhin im \enquote{Authorization} Header seinen Benutzernamen,
+		welcher mit dem SPNEGO GSSAPI Mechanismus~\cite[Vgl.][]{rfc4178} generiert wurde.
+		Diese Anfrage wird dann vom Server seinerseits dekodiert,
+		mit einer Sicherheitsfunktion innerhalb des Protokolls überprüft,
+		und falls der Kontext vollständig ist,
+		wird die geforderte Resource mit dem erneut generierten~\glslink{hashfunktion}{Hash}
+		des Mechanismus an den Clienten geschickt.
+		Falls der Kontext nicht vollständig war,
+		wiederholt sich dieser Prozess zwischen Client und Server so lange,
+		bis der Server von der oben genannten Sicherheitsfunktion einen Wert zurückbekommt,
+		der anzeigt,
+		dass der Prozess erfolgreich war.

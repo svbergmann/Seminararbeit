@@ -1,0 +1,88 @@
+\subsection{REST}\label{subsec:rest}
+	Anders als \gls{soap} ist die \gls{rest} \gls{api} kein offizielles Protokoll,
+	sondern beschreibt eine Schnittstelle,
+	welche sich an den Prinzipien und Denkweisen des \gls{www},
+	demzufolge auch an den~\nameref{p:httpMethoden},
+	orientiert.
+	Das bedeutet unter anderem,
+	dass keine strikten Regeln festgelegt,
+	sondern eher Empfehlungen zur Implementierung ausgegeben werden.
+	Somit liegt der Schwerpunkt einer \glslink{rest}{RESTful} \gls{api} darin,
+	die Maschine-zu-Maschine Kommunikation über mehrere unterschiedliche Programmiersprachen zu ermöglichen.
+	Dabei hat \gls{rest} sechs Architekturprinzipien, welche im Folgenden dargestellt werden.
+
+	\subsubsection{Client-Server}
+		Das Client-Server-Modell, auch Client-Server-Prinzip genannt, fordert eine strikte Aufgabenteilung.
+		Der Server stellt Dienste bereit, die von (meistens mehreren) Clienten,
+		unter Umständen auch gleichzeitig, genutzt werden können.
+		Dadurch entsteht eine Architektur,
+		in der die Server passiv agieren.
+		Diese warten auf eingehende Verbindungswünsche und Anfragen
+		und die Clienten fordern aktiv einen Dienst an.
+		Ein Dienst definiert in diesem Fall wie
+		und welche Daten ausgetauscht werden sollen.
+
+	\subsubsection{Zustandslosigkeit}
+		Clienten und Server müssen zustandslos kommunizieren, was bedeutet,
+		dass es (streng genommen) keine \enquote{Sitzungsverwaltung} gibt.
+		Dadurch folgt, dass jede \gls{rest} Nachricht immer alle Informationen bezüglich des Clienten und Server beinhalten muss.
+		Dies begünstigt dann unter anderem die \enquote{Skalierbarkeit} eines Web Services,
+		sprich die Aufgabenverteilung auf beliebig viele Maschinen wird erleichtert.
+
+	\subsubsection{Caching}
+		Das Caching wird genutzt, um die Effizienz und Schnelligkeit der Anwendung zu verbessern.
+		Die Informationen müssen dann entsprechend als \enquote{cacheable} oder eben \enquote{non-cacheable} gekennzeichnet werden.
+		Wenn also eine Nachricht \enquote{cacheable} beinhaltet,
+		so werden die Nutzdaten clientseitig im \enquote{Cache} gespeichert und bei jeder erneuten Anfrage an den Server abgerufen.
+		Dies birgt natürlich das Risiko,
+		veraltete Daten aus dem Cache zu bekommen,
+		weshalb die Kennzeichnung so wichtig ist.
+
+	\subsubsection{Einheitliche Schnittstelle}
+		\gls{rest} setzt auf eine einheitliche Schnittstelle,
+		damit alle Dienste gleich angesprochen werden können.
+		Dieses Prinzip unterscheidet sich nochmals in vier Aspekte.
+
+		\paragraph{Adressierbarkeit von Ressourcen}
+			Jede \glslink{rest}{RESTful} \gls{api} hat eine eindeutige Adresse, den \gls{url},
+			welche nur durch die Methoden des Netzwerk Protokolls~\nameref{subsubsec:http} manipuliert werden können.
+			Abbildung~\ref{fig:restKommunikation} zeigt ein Beispiel für die Adressierung von Objekten.
+			Zu sehen ist,
+			dass die Anfrage direkt auf eine Methode des Web Services routet,
+			welche den Request dann bearbeiten und die Antwort zurückschicken kann.
+
+		\paragraph{Repräsentationen zur Veränderung von Ressourcen}
+			Jede so angefragte Ressource kann die Antwort in unterschiedlichen Darstellungsformen,
+			beispielsweise in \gls{html}, \gls{json} oder \gls{xml} kodieren.
+			Alle unter dieser Adresse zugänglichen Dienste können dabei voneinander verschiedene Repräsentationen haben,
+			die aber dringend für eine \glslink{rest}{RESTful} \gls{api} gleich sein sollten.
+
+		\paragraph{Selbstbeschreibende Nachrichten}
+			Nachrichten, welche über den \gls{rest} Dienst verschickt werden, sollen selbst beschreibend sein.
+			Jede Anfrage soll also genau das darstellen,
+			wofür die deklarierte Methode gedacht ist.
+			Eine \enquote{DELETE} Nachricht soll zum Beispiel nur das Löschen anfordern und keine anderen Anfragen.
+
+		\paragraph{HATEOAS}\label{p:resthateoas}
+			Das Prinzip der \gls{hateoas} ist laut
+			Roy Fielding\footnote{Roy Thomas Fielding ist ein US-amerikanischer Informatiker,
+	welcher maßgeblich zur Entwicklung des \gls{http} und der \gls{rest} Architektur beitrug.}
+			die wichtigste Eigenschaft der \gls{rest} Architektur.
+			Wichtig ist hierbei,
+			dass der Client als Antwort vom Server immer alle aktuell verfügbaren \glspl{url} bekommt
+			und damit mit den sogenannten \enquote{\glspl{followUpLink}} weiter mit dem Server kommunizieren kann.
+
+	\subsubsection{Mehrschichtige Systeme}
+		Ganz nach dem Vorbild des Schichtensystems des Internets\footnote{s. Abbildung~\ref{fig:schichtenmodell}}
+		setzt auch \gls{rest} auf die Mehrschichtigkeit der Systeme.
+		Somit kann ein Client die oberste Schicht sehen und ansprechen,
+		was aber intern eigentlich passiert,
+		bleibt dem Server vorbehalten und verborgen.
+		Dadurch kann eine bessere Übersichtlichkeit und Skalierbarkeit erreicht werden.
+		Der Nachteil daran ist natürlich der \gls{overhead} durch zusätzliche Funktionsaufrufe.
+
+	\subsubsection{Code on Demand (optional)}
+		Diese letzte und optionale Bedingung beschreibt,
+		dass der Client, zur besseren Bedienung des Servers,
+		Code, zum Beispiel in Form von Skripten oder ähnlichem,
+		nachladen und clientseitig ausführen kann.

@@ -1,0 +1,43 @@
+\subsection{Vergleich: REST vs.\ SOAP}\label{subsec:vergleich:-rest-vs.-soap}
+	Tabelle~\ref{tab:vergleichSOAPREST} zeigt im Groben
+	die Gemeinsamkeiten und Unterschiede der beiden Architekturen.
+	Auffallend ist,
+	dass beide ein \gls{uri} Adressmodell besitzen
+	und über das~\nameref{subsubsec:http} Protokoll gesteuert bzw.\ angesprochen werden können.
+	Das vereinfacht den Vergleich bezüglich der Performance enorm,
+	welcher bewusst in der Tabelle fehlt,
+	da verschiedene Gesichtspunkte unter Performance beleuchtet werden können.
+	Wenn man aber nur den reinen Datenverkehr und damit zusammenhängend auch die Zeit nimmt,
+	die eine Nachricht vom Clienten zum eigentlichen Endpunkt braucht,
+	so ist~\nameref{subsec:rest} um einiges schneller.
+	Dies liegt vor allem an dem \gls{overhead},
+	welcher durch den~\nameref{subsec:soap} Dispatcher und
+	die Anforderungen an eine~\nameref{subsec:soap} Nachricht entsteht.
+
+	Des Weiteren wird die Schnittstellenbeschreibung nur vom~\nameref{subsec:soap} Standard gefordert,
+	was sowohl positiv als auch negativ gesehen werden kann.
+	Diese gibt nämlich Aufschluss darüber,
+	welche Methoden und Services zur Nutzung bereitstehen.
+	Jedoch wird auch wieder eine zusätzliche Anforderung an die Entwickler gestellt,
+	selbst wenn das eventuell gar nicht benötigt wird.
+	Auf der anderen Seite bietet eine~\hyperref[subsec:rest]{RESTful} \gls{api} eine generische Beschreibung,
+	optimalerweise als Antwort auf jede Nachricht an den Server,
+	welche durch das Prinzip der~\nameref{p:resthateoas} als verfügbare \glspl{uri} zurückgegeben wird.
+	Die Schnittstellen sind daher auch unterschiedlich,
+	da sich~\nameref{subsec:rest} strikt an die~\nameref{p:httpMethoden} hält,
+	und~\nameref{subsec:soap} eben die Freiheit besitzt,
+	die Schnittstellen anwendungsspezifisch zu definieren und
+	in der Beschreibung des Web Services festhalten zu können.
+	Eben hierbei zeichnet sich wieder die Leichtgewichtigkeit
+	einer~\nameref{subsec:rest} \gls{api} dadurch ab,
+	dass die vordefinierten Methoden genau so benutzt werden können
+	und nichts zusätzlich implementiert werden muss.
+
+	Zusammenfassend kann gesagt werden,
+	dass es immer noch auf die persönlichen Vorlieben der Entwickler oder Firmen ankommt,
+	welche Architektur tatsächlich genutzt werden soll.
+	Für~\nameref{subsec:soap} gibt es zum Beispiel unzählige Bibliotheken,
+	die die Implementierung eines solchen Services erheblich vereinfachen.
+	Der Architekturstil~\nameref{subsec:rest} wird allerdings immer häufiger genutzt,
+	da die Kopplung an die Funktionsweise des \gls{http} für viele einen großen Vorteil darstellt
+	und dadurch auch mehr \glspl{framework} auf den Markt kommen.

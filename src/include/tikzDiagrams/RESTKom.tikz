@@ -1,0 +1,79 @@
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Rectangle [id:dp6713021135531445]
+	\draw   (20,40) -- (110,40) -- (110,260) -- (20,260) -- cycle ;
+%Shape: Rectangle [id:dp9488356654027563]
+	\draw   (230,40) -- (350,40) -- (350,260) -- (230,260) -- cycle ;
+%Shape: Rectangle [id:dp051438042119226646]
+	\draw   (380,40) -- (500,40) -- (500,260) -- (380,260) -- cycle ;
+%Rounded Rect [id:dp025938333082131892]
+	\draw   (30,62) .. controls (30,55.37) and (35.37,50) .. (42,50) -- (88,50) .. controls (94.63,50) and (100,55.37) .. (100,62) -- (100,98) .. controls (100,104.63) and (94.63,110) .. (88,110) -- (42,110) .. controls (35.37,110) and (30,104.63) .. (30,98) -- cycle ;
+%Rounded Rect [id:dp6746062988145041]
+	\draw   (30,132) .. controls (30,125.37) and (35.37,120) .. (42,120) -- (88,120) .. controls (94.63,120) and (100,125.37) .. (100,132) -- (100,168) .. controls (100,174.63) and (94.63,180) .. (88,180) -- (42,180) .. controls (35.37,180) and (30,174.63) .. (30,168) -- cycle ;
+%Rounded Rect [id:dp3846676301494929]
+	\draw   (30,202) .. controls (30,195.37) and (35.37,190) .. (42,190) -- (88,190) .. controls (94.63,190) and (100,195.37) .. (100,202) -- (100,238) .. controls (100,244.63) and (94.63,250) .. (88,250) -- (42,250) .. controls (35.37,250) and (30,244.63) .. (30,238) -- cycle ;
+%Rounded Rect [id:dp5291262901539]
+	\draw   (240,62) .. controls (240,55.37) and (245.37,50) .. (252,50) -- (328,50) .. controls (334.63,50) and (340,55.37) .. (340,62) -- (340,98) .. controls (340,104.63) and (334.63,110) .. (328,110) -- (252,110) .. controls (245.37,110) and (240,104.63) .. (240,98) -- cycle ;
+%Rounded Rect [id:dp803526501517456]
+	\draw   (240,132) .. controls (240,125.37) and (245.37,120) .. (252,120) -- (328,120) .. controls (334.63,120) and (340,125.37) .. (340,132) -- (340,168) .. controls (340,174.63) and (334.63,180) .. (328,180) -- (252,180) .. controls (245.37,180) and (240,174.63) .. (240,168) -- cycle ;
+%Rounded Rect [id:dp4732941799846049]
+	\draw   (240,202) .. controls (240,195.37) and (245.37,190) .. (252,190) -- (328,190) .. controls (334.63,190) and (340,195.37) .. (340,202) -- (340,238) .. controls (340,244.63) and (334.63,250) .. (328,250) -- (252,250) .. controls (245.37,250) and (240,244.63) .. (240,238) -- cycle ;
+%Shape: Rectangle [id:dp10324218660152407]
+	\draw   (390,50) -- (490,50) -- (490,110) -- (390,110) -- cycle ;
+%Shape: Rectangle [id:dp9289733601126315]
+	\draw   (390,120.5) -- (490,120.5) -- (490,180) -- (390,180) -- cycle ;
+%Shape: Rectangle [id:dp060786979153347964]
+	\draw   (390,190) -- (490,190) -- (490,250) -- (390,250) -- cycle ;
+%Straight Lines [id:da4074949520827229]
+	\draw    (100,80) -- (238,80) ;
+	\draw [shift={(240,80)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da7678440087120453]
+	\draw    (100,150) -- (238,150) ;
+	\draw [shift={(240,150)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da8610972651984123]
+	\draw    (100,220) -- (238,220) ;
+	\draw [shift={(240,220)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da18649676798360515]
+	\draw    (340,80) -- (388,80) ;
+	\draw [shift={(390,80)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da882291870882637]
+	\draw    (340,150) -- (388,150) ;
+	\draw [shift={(390,150)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da06798859261533052]
+	\draw    (340,220) -- (388,220) ;
+	\draw [shift={(390,220)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+
+% Text Node
+	\draw (21,21) node [anchor=north west][inner sep=0.75pt]   [align=left] {Client};
+% Text Node
+	\draw (231,21) node [anchor=north west][inner sep=0.75pt]   [align=left] {Web Server};
+% Text Node
+	\draw (381,21) node [anchor=north west][inner sep=0.75pt]   [align=left] {Server/Objekte};
+% Text Node
+	\draw (41,62) node [anchor=north west][inner sep=0.75pt]   [align=left] {HTTP \\Client 1};
+% Text Node
+	\draw (41,132) node [anchor=north west][inner sep=0.75pt]   [align=left] {HTTP \\Client 2};
+% Text Node
+	\draw (41,202) node [anchor=north west][inner sep=0.75pt]   [align=left] {HTTP \\Client 3};
+% Text Node
+	\draw (253,71) node [anchor=north west][inner sep=0.75pt]   [align=left] {/artikel/*};
+% Text Node
+	\draw (243,141) node [anchor=north west][inner sep=0.75pt]   [align=left] {/warenkorb/*};
+% Text Node
+	\draw (252,211) node [anchor=north west][inner sep=0.75pt]   [align=left] {/kunde/*};
+% Text Node
+	\draw (400,71) node [anchor=north west][inner sep=0.75pt]   [align=left] {getDetails()};
+% Text Node
+	\draw (402,141) node [anchor=north west][inner sep=0.75pt]   [align=left] {getPreis()};
+% Text Node
+	\draw (401,211) node [anchor=north west][inner sep=0.75pt]   [align=left] {getStatus()};
+% Text Node
+	\draw (112,133) node [anchor=north west][inner sep=0.75pt]  [font=\small] [align=left] {GET /warenkorb/5};
+% Text Node
+	\draw (112,203) node [anchor=north west][inner sep=0.75pt]  [font=\small] [align=left] {GET /kunde/25};
+% Text Node
+	\draw (111,64) node [anchor=north west][inner sep=0.75pt]  [font=\small] [align=left] {GET /artikel/14};
+
+
+\end{tikzpicture}

@@ -1,0 +1,71 @@
+\subsection{OpenID Connect}\label{subsec:openid-connect}
+	OpenID Connect ist eine einfache Protokollschicht,
+	angesiedelt oberhalb von~\nameref{subsec:oauth} 2.0.
+	Während~\nameref{subsec:oauth} 2.0 als \glslink{autorisierung}{Autorisierungsprotokoll} konzipiert ist,
+	stellt OpenID Connect auch \gls{authentisierung} bereit.
+	Es befähigt Clienten dazu,
+	Identitäten auf Basis einer \gls{authentifizierung} durch den
+	\glslink{authentisierung}{Authorization Server} zu verifizieren,
+	sowie grundlegende Informationen über den Benutzer auf eine~\nameref{subsec:rest}-ähnliche Weise zu erhalten.
+	Die Nachfrage nach \glslink{authentifizierung}{authentifizierten Sitzungen} kann dabei von web-basierten,
+	mobilen oder \gls{javascript} Clienten kommen~\cite[Vgl.][]{oidc}.
+
+	\subsubsection{Terminologien}
+		Für~\nameref{subsec:openid-connect} gelten die gleichen Terminologien wie für~\nameref{subsec:oauth},
+		jedoch werden diese noch durch Folgende ergänzt:
+
+		\begin{itemize}
+			\item[\textbf{Claim:}] Stellt ein Teil einer Information über eine Entität dar.
+
+			\item[\textbf{OpenID Provider:}] Der \textbf{OP} ist ein \textbf{Authorization Server},
+			welcher in der Lage ist,
+			den \textbf{End-User} zu \glslink{authentifizierung}{authentifizieren}
+			und der \textbf{RP} \textbf{Claims} zur Verfügung zu stellen.
+
+			\item[\textbf{Relying Party:}] Die \textbf{RP} ist eine~\nameref{subsec:oauth} 2.0 \textbf{Client} Applikation,
+			welche \textbf{Claims} und \gls{authentifizierung} von einem \textbf{Open ID Provider} beantragen kann.
+
+			\item[\textbf{ID Token:}] Ein JSON Web Token (JWT) (s. Abbildung~\ref{lst:jsonWebToken}), was \textbf{Claims}
+			über die \gls{authentifizierung} beinhaltet.
+			Diese Token \textit{kann} auch noch andere \textbf{Claims} beinhalten.
+
+		\end{itemize}
+
+	\subsubsection{Ablauf der Autorisierung}
+		Der abstrakte Ablauf stellt sich hierbei, wie in Abbildung~\ref{fig:openIDAbstractFlow} gezeigt, dar:
+		\begin{enumerate}[(1)]
+			\item Der \textbf{RP}  sendet eine Anfrage an den~\textbf{OP}.
+			\item Der \textbf{OP} \glslink{authentifizierung}{authentifiziert} den \enquote{End-User}
+			und erhält~\glslink{autorisierung}{Autorisierung}.
+			\item Der \textbf{OP} antwortet mit einem \textbf{ID-Token} und meistens auch mit einem~\textbf{Access Token}.
+			\item Der \textbf{RP} kann nun eine Anfrage mit dem erhaltenen Token
+			an den \enquote{UserInfo Endpoint} schicken.
+			\item Der \enquote{UserInfo Endpoint} gibt die \textbf{Claims} über den \enquote{End-User} zurück.
+		\end{enumerate}
+
+		\bigskip\noindent
+		Grundsätzlich unterscheidet sich der Ablauf auf den ersten Blick kaum
+		von dem des~\nameref{subsec:oauth} 2.0 Protokolls.
+		Bei~\nameref{subsec:openid-connect} ist es allerdings so,
+		dass anfangs bei der Anfrage an den \textbf{OP}
+		der Wert von \textbf{Scope} auf \enquote{openid} gesetzt wird,
+		um dem \textbf{Authorization Server} mitzuteilen,
+		dass eben dieses Protokoll genutzt wird.
+		Der eigentliche Mehrwert oder besser die Erweiterung zu~\nameref{subsec:oauth} 2.0
+		besteht nun vor allem in den sogenannten~\textbf{ID-Token}.
+		Während~\nameref{subsec:oauth} 2.0 die Funktionalität bereitstellt,
+		einem \textbf{Clienten} Zugang zu den eigenen Daten ohne Übermittlung des Passwortes
+		durch ein \textbf{Access Token} zu gewähren,
+		kann~\nameref{subsec:openid-connect} zusätzlich die Identität des Benutzers prüfen.
+		Dadurch kann jeder \textbf{Client} sicher sein,
+		dass der so \glslink{authentifizierung}{authentifizierte} \textbf{End-User} tatsächlich derjenige ist,
+		der er vorgibt zu sein.
+		Das eben erwähnte \textbf{ID Token} enthält \textbf{Claims}
+		über die \gls{authentifizierung} eines \enquote{End-Users}
+		von einem \textbf{Authorization Server} und andere potenziell angefragte Parameter.
+		Es stellt sich als JWT dar und besitzt einige Schlüssel-Wert Paare,
+		welche zum Beispiel auch in Abbildung~\ref{lst:jsonWebToken} dargestellt sind.
+		Hierbei findet sich unter anderem auch das \enquote{nonce} aus dem darunterliegenden Protokoll wieder.
+		Dieses Token kann nun vom \textbf{Clienten} genutzt werden,
+		um am \textbf{UserInfo Endpoint} weitere Informationen über den Benutzer abzufragen
+		und über ein neues \textbf{ID Token} zurückzubekommen.

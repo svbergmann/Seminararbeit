@@ -1,0 +1,23 @@
+\subsection{Web-Security}\label{subsec:websecurity}
+	Unter dem Begriff Web-Security versteht man im Allgemeinen die Absicherung der Übertragung von Dateien
+	über das \gls{www} und damit auch in Verbindung mit dem~\nameref{subsubsec:http}.
+
+	Da das~\nameref{subsubsec:http} grundsätzlich unverschlüsselt ist
+	und daher jeder Mittelsmann die Kommunikation mithören und insbesondere auch verändern kann,
+	muss \gls{https} genutzt werden.
+	Das Protokoll wird auch~\enquote{\nameref{subsubsec:http} over \gls{tls}} genannt
+	und liegt in der Schichtenarchitektur\footnote{s. Abbildung~\ref{fig:schichtenmodell}} auf der Anwendungsebene.
+	Die Übertragung der Daten beim \gls{https} ist identisch zur Übertragung der Daten mit dem~\nameref{subsubsec:http}.
+	Der Unterschied beider Protokolle liegt nur darin,
+	dass bei~\gls{https} die Nutzdaten durch~\nameref{subsec:ssl} verschlüsselt wurden,
+	jedoch IP-Adresse und Port weiterhin sichtbar sind.
+	Ein wichtiger Begriff hierbei ist das sogenannte \enquote{X.509}~\cite[Vgl.][]{rfc5280} Zertifikat.
+	Dieses folgt einer gewissen Struktur und beinhaltet unter anderem die Version,
+	die Algorithmen-ID, den Aussteller, die Gültigkeit und den Inhaber.
+	Mit solch einem Zertifikat kann ein Browser sicherstellen,
+	dass tatsächlich mit der Internetseite/ dem Web Service kommuniziert wird.
+	Die Zertifikate werden von einer \enquote{Certificate-Authority (CA)} ausgestellt,
+	welche die Signatur übernimmt und diese in einen Verzeichnisdienst,
+	welcher bereits ausgestellte Zertifikate enthält, einträgt.
+
+

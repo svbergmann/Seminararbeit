@@ -1,0 +1,223 @@
+% Akronyme ohne Erklärung
+
+\newacronym{aes}{AES}{Advanced Encryption Standard}
+\newacronym{des}{DES}{Data Encryption Standard}
+\newacronym{flip}{FLIP}{Flight Information Publication}
+\newacronym{ftp}{FTP}{File Transfer Protocol}
+\newacronym{hateoas}{HATEOAS}{Hypermedia as the Engine of Application State}
+\newacronym{http}{HTTP}{Hypertext Transfer Protocol}
+\newacronym{https}{HTTPS}{Hypertext Transfer Protocol Secure}
+\newacronym{lfid}{LFID}{Luftfahrt Informations Datenbank}
+\newacronym{rest}{REST}{Representational State Transfer}
+\newacronym{soap}{SOAP}{Simple Object Access Protocol}
+\newacronym{ssl}{SSL}{Secure Sockets Layer}
+\newacronym{tcp}{TCP}{Transmission Control Protocol}
+\newacronym{tls}{TLS}{Transport Layer Security}
+\newacronym{smtp}{SMTP}{Simple Mail Transfer Protocol}
+
+% Akronyme mit Erklärung
+
+\newdefineabbreviation
+{api}{API}{Application Programming Interface}
+{Satz von Befehlen, Protokollen und Funktionen,
+	welche Entwickler für die Erstellung von Software zur Ausführung
+	allgemeiner Operationen verwenden können.
+	Diese Programmierschnittstelle stellt somit die Grundlage
+	für die Kommunikation zwischen Anwendungen bereit.}
+
+\newdefineabbreviation
+{corba}{CORBA}{Common Object Request Broker Architecture}
+{Objektorientiertes Kommunikationsprotokoll,
+	welches plattformübergreifend und unabhängig von Programmiersprachen ist}
+
+\newdefineabbreviation
+{dcom}{DCOM}{Distributed Component Object Model}
+{Von Microsoft entwickeltes Protokoll um auf Basis des Component Object Models (COM)
+	über das Netzwerk kommunizieren zu können}
+
+\newdefineabbreviation
+{xml}{XML}{Extensible Markup Language}
+{Auszeichnungssprache zur Darstellung von Objekten oder Dateien in einem menschen-
+und maschinenlesbaren Format}
+
+\newdefineabbreviation
+{html}{HTML}{Hypertext Markup Language}
+{Sprache zur Darstellung von Inhalten über einen Web Browser}
+
+\newdefineabbreviation
+{json}{JSON}{JavaScript Object Notation}
+{Maschinenlesbare Sprache zur Darstellung von Objekten.
+Bei \gls{javascript} kann dies unter anderem für eine
+Instanziierung neuer Objekte genutzt werden.}
+
+\newdefineabbreviation
+{uri}{URI}{Uniform Resource Identifier}
+{Eindeutige Adressierung von abstrakten und
+physikalischen Ressourcen im Internet\\
+\glsname{uri}: \glsname{url}s $\cup$ \glsname{urn}s}
+
+\newdefineabbreviation
+{url}{URL}{Uniform Resource Locator}
+{Adressierung von Informationsobjekten mit Festlegung
+des Zugangs-Protokolls (Ort der Ressource)}
+
+\newdefineabbreviation
+{urn}{URN}{Uniform Resource Name}
+{Adressierung von Objekten ohne ein Protokoll festzulegen
+	(Eindeutige und gleichbleibende Referenz - Name der Ressource)}
+
+\newdefineabbreviation
+{w3c}{W3C}{World Wide Web Consortium}
+{Konsortium, welches aus verschiedenen Mitgliedsorganisationen besteht,
+	deren Ziel es ist, Protokolle und Richtlinien des \glsname{www} zu standardisieren}
+
+\newdefineabbreviation
+{wsdl}{WSDL}{Web Services Description Language}
+{Auszeichnungssprache um Web Services zu charakterisieren}
+
+\newdefineabbreviation
+{ws-addressing}{WS-Addressing}{Web Services Addressing}
+{Mechanismus für Web Services um Adressinformationen austauschen zu können}
+
+\newdefineabbreviation
+{ws-reliableMessaging}{WS-ReliableMessaging}{Web Services Reliable Messaging}
+{Standard, welcher garantiert, dass Nachrichten auf jeden Fall beim Empfänger ankommen}
+
+\newdefineabbreviation
+{ws-security}{WS-Security}{Web Services Security}
+{Kommunikationsprotokoll, welches ermöglicht,
+	Sicherheitsaspekte bei Web Services einzubeziehen}
+
+\newdefineabbreviation
+{www}{WWW}{World Wide Web}
+{Dezentrales Kommunikationsnetz, welches dazu dient,
+	Informationen zu übertragen und nutzbar zu machen}
+
+\newdefineabbreviation
+{wpa2}{WPA2}{Wi-Fi Protected Access 2}
+{Standard für die \gls{authentifizierung} und Verschlüsselung von WLANs,
+	basierend auf dem IEEE 802.11 Standard}
+
+\newdefineabbreviation
+{ssh}{SSH}{Secure Shell}
+{Netzwerkprotokoll, welches dazu befähigt, über ein ungesichertes Netzwerk,
+	sicher auf einen Computer zuzugreifen}
+
+\newdefineabbreviation
+{7zip}{7z}{7-Zip}
+{Freies Dateiformat mit der Endung .7z,
+	was zur Komprimierung und Archivierung von Daten verwendet wird}
+
+\newdefineabbreviation
+{ietf}{IETF}{Internet Engineering Task Force}
+{Organisation zur Verbesserung und Weiterentwicklung der Funktionsweise des Internets}
+
+% Glossareinträge ohne Akronym
+
+\newglossaryentry{pipelining}{
+	name=Pipelining,
+	description={Falls ein Client persistente Verbindungen unterstützt,
+	können die Anfragen hintereinander geschickt werden,
+	ohne auf die jeweilige Antwort zu warten.
+	Der Server muss dann in genau dieser Reihenfolge auf die Anfragen antworten.}
+}
+
+\newglossaryentry{headOfLineBlocking}{
+	name=Head-of-Line-Blocking,
+	description={Problem, das entsteht,
+	wenn mehrere zu versendende Pakete durch das erste Paket aufgehalten werden}
+}
+
+\newglossaryentry{followUpLink}{
+	name=Follow-up-Link,
+	description={Link, der nach einer Aktion auf dem Server an den Clienten zurückgeschickt wird,
+	um verfügbare Aktionen/Ressourcen zu signalisieren}
+}
+
+\newglossaryentry{host}{
+	name=Host,
+	description={Computer,
+	welcher eine eindeutige IP-Adresse besitzt und darüber erreicht werden kann}
+}
+
+\newglossaryentry{eulerphi}{
+	name=Eulersche $\phi$-Funktion,
+	description={Gibt für jedes $n\in\mathbb{N}$ an, wie viele zu $n$ teilerfremde
+	$m\in\mathbb{N}$ mit $m<n$ existieren}
+}
+
+\newglossaryentry{isoOsiModell}{
+	name=ISO/OSI-Referenzmodell,
+	description={Modell für die Netzwerkprotokolle als Darstellung
+	über eine Schichtenarchitektur,
+	siehe auch~\nameref{fig:schichtenmodell}}
+}
+
+\newglossaryentry{overhead}{
+	name=Overhead,
+	description={Daten, welche nicht primär zu den Nutzdaten zählen,
+	aber trotzdem zusätzlich als Information beispielsweise zur Weiterverarbeitung oder
+	Speicherung benötigt werden}
+}
+
+\newglossaryentry{framework}{
+	name=Framework,
+	description={Zu deutsch \enquote{Rahmenwerk},
+	was eine wiederverwendbare Struktur bereitstellt,
+	welche für die Entwicklung verschiedener Programme genutzt werden kann}
+}
+
+\newglossaryentry{base64}{
+	name=Base64,
+	description={Kodierungsverfahren,
+	welches den Text zuerst in einen Bytestrom umwandelt,
+	aus diesem jeweils immer drei Bytes hernimmt,
+	die 24 Bits wiederum in 4 Blöcke à 6 Bit aufteilt und
+	letztendlich die Binärwerte wieder in ein Zeichen umwandelt.
+	So entsteht bei $n$ zu kodierenden Zeichen ein Bedarf von
+	$z=4\cdot \lceil \frac{n}{3} \rceil$ Zeichen.}
+}
+
+\newglossaryentry{string}{
+	name=String,
+	description={Zeichenkette,
+	welche in manchen Programmiersprachen einen eigenen Datentypen darstellt}
+}
+
+\newglossaryentry{hashfunktion}{
+	name=Hashfunktion,
+	description={Surjektive Abbildung $h:K\to S$ mit $\vert K\vert \geq \vert S\vert$,
+	welche eine Basismenge auf eine kleinere Zielmenge abbildet}
+}
+
+\newglossaryentry{singleSignOn}{
+	name=Single Sign-On,
+	description={Auch als \enquote{Einmalanmeldung} bekannt,
+	berechtigt den Clienten sich nur einmal zu \glslink{authentifizierung}{authentifizieren} und
+	danach alle bereitgestellten Dienste ohne erneute Anmeldung zu nutzen.}
+}
+
+\newglossaryentry{authentisierung}{
+	name=Authentisierung,
+	description={Ein Nutzer legt Nachweise vor,
+	welche dessen Identität bestätigen sollen
+	(Behauptung einer Identität)}
+}
+
+\newglossaryentry{authentifizierung}{
+	name=Authentifizierung,
+	description={Stellt die Prüfung der behaupteten \gls{authentisierung} dar
+	(Verifizierung der Identität)}
+}
+
+\newglossaryentry{autorisierung}{
+	name=Autorisierung,
+	description={Nach erfolgreicher \gls{authentifizierung} werden spezielle Rechte
+	an den Nutzer vergeben
+	(Vergabe oder Verweigerung von Rechten)}
+}
+
+\newglossaryentry{javascript}{
+	name=JavaScript,
+	description={Skriptsprache, welche ursprünglich für das dynamische Erstellen von Internetseiten entwickelt wurde}
+}

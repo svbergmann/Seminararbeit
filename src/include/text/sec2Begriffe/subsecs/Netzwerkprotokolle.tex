@@ -1,0 +1,80 @@
+\subsection{Netzwerkprotokolle}\label{subsec:netzwerkprotokolle}
+	Im Folgenden wird kurz auf relevante Netzwerkprotokolle eingegangen,
+	welche sich in der Anwendungsschicht (engl.\ Application Layer) des
+	\gls{tcp}/IP-Modells\footnote{s. Abbildung~\ref{fig:schichtenmodell}} befinden.
+
+	\subsubsection{HTTP}\label{subsubsec:http}
+		Das \gls{http} existiert bereits seit 1996 in der Version \enquote{\gls{http}/1.0}~\cite[Vgl.][]{rfc1945}
+		und definiert ein leichtgewichtiges, schnelles und einfach zu implementierendes Protokoll,
+		welches für viele Aufgaben eingesetzt werden kann.
+		Es ist zudem zustandslos und objektorientiert, woraus folgt, dass
+		jede Operation über eine separate \gls{tcp}-Verbindung realisiert wird.
+
+		1999 wurde \enquote{\gls{http}/1.1}~\cite[Vgl.][]{rfc7230} standardisiert.
+		Diese Version stellte eine Verbesserung bezüglich der Ladezeiten dar,
+		indem ein Header Feld namens \enquote{Connection: keep-alive} hinzugefügt wurde.
+		Dieses Feld kann vom Clienten optional gesetzt werden, um zu signalisieren,
+		dass dieser die \gls{tcp}-Verbindung offen halten möchte.
+		Des Weiteren wurden \enquote{Non-IP-based Virtual \glspl{host}} durch das Header Feld \enquote{\gls{host}}
+		als Lösung für virtuelle \glspl{host} hinzugefügt,
+		wodurch sich nun beliebig viele Domänen und Dienste die gleiche IP-Adresse teilen,
+		aber trotzdem auf einem Rechner liegen können.
+
+		Eine weitere Beschleunigung der Datenübertragung stellte \enquote{\gls{http}/2.0}~\cite[Vgl.][]{rfc7540} dar.
+		Das 2015 standardisierte Protokoll ist abwärtskompatibel zur Version 1.1.
+		Es kann aber eine Anfrage vom Clienten über das Header Feld \enquote{Connection: Upgrade} gestartet werden,
+		ob der Server die neuere Version unterstützt.
+		Falls diese Konstellation gegeben ist, wird nach der Antwort des Servers mit der Version 2.0 weitergearbeitet.
+		Da das \gls{pipelining} in Version 1.1 zwar erlaubt ist,
+		jedoch von Browser zu Browser entweder unterschiedlich oder gar nicht implementiert ist,
+		wurde 2015 das \enquote{Multiplexing} hinzugefügt.
+		Die Verbesserung hierbei stellen die Streams dar,
+		welche mehrere Anfragen oder Antworten gleichzeitig übertragen können.
+		Des Weiteren muss der Server nicht mehr die Reihenfolge der Antworten beachten,
+		sondern weist den Streams eine eindeutige ID zu,
+		was das sogenannte \gls{headOfLineBlocking} löst.
+
+		Der grundsätzliche Ablauf ist wie folgt:
+		\begin{compactenum}
+			\item Der Client baut eine \gls{tcp}/IP-Verbindung zum Server auf.
+			\item Der Client sendet eine \gls{http}-Anfrage (s.~\nameref{p:httpMethoden}),
+			in der das geforderte Dokument / der geforderte Dienst genau spezifiziert ist.
+			\item Der Server antwortet mit einem Statuscode und je nach Erfolg der Anfrage auch mit dem angeforderten Dokument.
+			\item Im Falle von~\enquote{\gls{http}/1.0} wird die \gls{tcp}/IP-Verbindung geschlossen.
+			Wie oben schon erwähnt, kann durch das Setzen des \enquote{Connection: keep-alive} Feldes
+			die Verbindung aufrechterhalten werden und so entfallen die Schritte 4 und 1 bei weiteren Anfragen.
+		\end{compactenum}
+
+		\paragraph{HTTP-Methoden}\label{p:httpMethoden}
+			Eine \gls{http}-Anfrage benutzt Methoden zur Spezifikation der gewünschten Aktion.
+			Davon gibt es seit \enquote{\gls{http}/1.1} folgende acht Methoden,
+			von welchen alle Server die Methoden \textbf{GET} und \textbf{HEAD} unterstützen~\textit{müssen}.
+			Alle anderen Methoden sind optional.
+			\begin{compactitem}
+				\item \textbf{GET} fordert eine im Request-\glsname{uri} definierte Resource an.
+				\item \textbf{HEAD} ist ähnlich wie GET, übermittelt aber nur den Header ohne den Body.
+				\item \textbf{POST} überträgt Daten an den Server.
+				\item \textbf{PUT} möchte alle Daten, welche momentan auf dem Server liegen,
+				mit den eigenen Daten überschreiben.
+				\item \textbf{DELETE} löscht Dokumente auf dem Server (sofern die Rechte dazu vorhanden sind).
+				\item \textbf{CONNECT} kann einen Tunnel zum Server für die bidirektionale Kommunikation öffnen.
+				\item \textbf{OPTIONS} fordert den Zugriffspfad einer Resource an und die weitere Kommunikation,
+				welche darüber möglich ist.
+				\item \textbf{TRACE} ist zum Testen.
+				Die Anfrage wird vom Server zurückgeschickt.
+			\end{compactitem}
+
+	\subsubsection{FTP}\label{subsubsec:ftp}
+		Im Oktober 1985 wurde das \gls{ftp} spezifiziert~\cite[Vgl.][]{rfc959}.
+		Seitdem ist dies der Internet-Standard für die Übertragung von Dateien und wird benutzt,
+		um eine komplette Datei von einem auf den anderen Rechner zu kopieren
+		oder interaktiven Zugriff zu ermöglichen.
+		Hierbei werden zwei Ports genutzt,
+		wobei Port 20 und Port 21 der Standard sind.
+		Über den Control Port des Servers (Port 21) wird eine \gls{tcp}-Verbindung aufgebaut,
+		mit der die Befehle gesendet werden.
+		Falls dies erfolgreich verlaufen ist,
+		wird über einen anderen Port (standardmäßig Port 20) die Dateiübertragung abgewickelt.
+		Normalerweise ist die Vorgehensweise etwas komplizierter,
+		funktioniert je nach aktivem oder passivem Modus etwas anders und besitzt seinerseits auch Methoden.
+		Das ist hier aber nicht von Belang und würde den Rahmen der Arbeit sprengen.

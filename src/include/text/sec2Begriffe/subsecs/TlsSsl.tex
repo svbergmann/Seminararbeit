@@ -1,0 +1,48 @@
+\subsection{TLS/SSL}\label{subsec:ssl}
+	Bereits neun Monate nach der Verbreitung des ersten Webbrowsers \enquote{Mosaic} 1994
+	stellte Netscape Communications die erste Version des \gls{ssl} Protokolls (1.0) vor.
+	Nur fünf Monate später kam die Version 2.0,
+	zusammen mit dem neuen Browser \enquote{Netscape Navigator},
+	auf den Markt.
+	Die Firma übergab letztendlich im Sommer 1996 die Versionsverwaltung über die Version 3.0 an die \gls{ietf},
+	um einen einheitlichen Internet-Standard zu entwickeln.
+	1999 wurde dann \gls{ssl} in \gls{tls} umbenannt und
+	unter \enquote{The TLS Protocol Version 1.0}~\cite[Vgl.][]{rfc2246} veröffentlicht.
+	Heutzutage werden die Versionen 1.2~\cite[Vgl.][]{rfc5246} und 1.3~\cite[Vgl.][]{rfc8446} genutzt,
+	da frühere Standards seit März 2021 unzulässig sind. \par
+	Das \gls{tls} Protokoll wird genutzt,
+	damit sensible Daten bei der Übertragung über das Internet nicht gelesen oder manipuliert werden können.
+	Im Protokollstapel des \glslink{isoOsiModell}{ISO/OSI-Referenzmodells}
+	befindet sich \gls{tls} auf der Ebene 5,
+	der Sitzungsschicht, auch \enquote{Session-Layer} genannt.
+	Diese Schicht ist damit genau zwischen Transport- und Darstellungsschicht,
+	also zwischen Protokollen, wie \gls{tcp} und~\nameref{subsubsec:http}.
+	Aufgabe hiervon ist es also,
+	Daten aus den höheren Ebenen zu verschlüsseln und an die Transportschicht weiterzugeben.
+	Genauer besteht das Protokoll aus zwei Schichten,
+	auf welche im Folgenden näher eingegangen wird.
+
+	\subsubsection{TLS Handshake Protocol}\label{subsubsec:tlsHandshake}
+		Das Handshake Protokoll ermittelt den stärksten,
+		gemeinsam unterstützten Algorithmus,
+		\glslink{authentifizierung}{authentifiziert} die Kommunikationspartner
+		und bestimmt optionaler Weise einen Sitzungsschlüssel für
+		die~\hyperref[subsubsec:symVersch]{symmetrische Verschlüsselung}.
+		In vereinfachter Darstellung passieren dabei folgende Schritte.
+		Der Client schickt eine \enquote{Hello} Nachricht an den Server,
+		in welcher dieser alle kryptografischen Informationen,
+		wie unterstützte Algorithmen,
+		eine Zufallsnummer des Clienten und eine Session ID mitteilt.
+		Der Server antwortet seinerseits mit einem \enquote{Hello},
+		in welchem der stärkste gemeinsame Algorithmus,
+		eine Zufallsnummer des Servers und die Session ID übertragen wird.
+
+	\subsubsection{TLS Record Protocol}\label{subsubsec:tlsRecord}
+		Das Record Protocol (engl.\ Record Layer) ist vollständig getrennt vom~\nameref{subsubsec:tlsHandshake}.
+		Es verschickt die Daten symmetrisch mit den vorher ausgehandelten Verschlüsselungsalgorithmen und Sitzungsschlüsseln.
+		Das Effiziente hierbei ist,
+		dass die Sicherheit der~\hyperref[subsubsec:asymVersch]{asymmetrischen Verschlüsselung}
+		nur beim Aushandeln des Schlüssels genutzt wird,
+		während die eigentlichen Daten dann mit der
+		\hyperref[subsubsec:symVersch]{symmetrische Verschlüsselung} verschickt werden.
+		Damit geht man dem Problem der Performance-Einbuße aus dem Weg.

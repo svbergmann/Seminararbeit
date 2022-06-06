@@ -1,0 +1,43 @@
+\subsection{Tabellen}\label{subsec:tabellen}
+
+	\bigskip\noindent
+	\begin{minipage}{\textwidth}
+		\centering
+		\captionof{table}{Vergleich: SOAP vs.\ REST \label{tab:vergleichSOAPREST}}
+		\begin{tabularx}{\textwidth}{|X|X|X|}
+			\hline
+			\diagbox{Thema}{Architektur} & ~\nameref{subsec:soap}                                 & ~\nameref{subsec:rest}                   \\
+			\hline
+			\hline
+			Schnittstellenbeschreibung      & \glslink{wsdl}{WSDL}                                   & keine, generisch                         \\
+			\hline
+			Adressmodell                    & \glslink{uri}{URI}                                     & \glslink{uri}{URI}                       \\
+			\hline
+			Schnittstelle                   & anwendungsspezifisch                                   & generisch durch~\nameref{p:httpMethoden} \\
+			\hline
+			Transport                       & \nameref{subsubsec:http}, \glslink{smtp}{SMTP}, \ldots & \nameref{subsubsec:http}                 \\
+			\hline
+			Standards                       & \glslink{w3c}{W3C}                                     & keine, da Architekturstil                \\
+			\hline
+		\end{tabularx}
+	\end{minipage}
+
+	\bigskip\noindent
+	\begin{minipage}{\textwidth}
+		\centering
+		\captionof{table}{HTTP Digest Client Antwortfelder \label{tab:httpdigestclientresponse}}
+		\begin{tabularx}{\textwidth}{|X|c|X|}
+			\hline
+			Bezeichner & = & Wert                                               \\ \hline
+			\hline
+			username      &   & Benutzername (Klartext)                            \\ \hline
+			realm         &   & Bereichsname                                       \\ \hline
+			nonce         &   & nonce des Servers                                  \\ \hline
+			uri           &   & Angeforderte Adresse                               \\ \hline
+			qop           &   & Sicherheitsqualität des Clienten                   \\ \hline
+			nc            &   & Anzahl der Anfragen (hexadezimal)                  \\ \hline
+			cnonce        &   & nonce des Clienten                                 \\ \hline
+			response      &   & Zusammengesetzter \glslink{hashfunktion}{Hashwert} \\ \hline
+			opaque        &   & opaque des Servers                                 \\ \hline
+		\end{tabularx}
+	\end{minipage}

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+    <soap:Header>
+        <m:RequestID xmlns:m="http://www.meinEigenerNamensraum.de/database">
+            a3f5c109b
+        </m:RequestID>
+    </soap:Header>
+    <soap:Body>
+        <m:DbResponse xmlns:m="http://www.meinEigenerNamensraum.de/database">
+            <m:title value="Folgen, Integrale, Flaechenberechnung">
+                <m:choice value="1">Analysis</m:choice>
+                <m:choice value="2">Lineare Algebra</m:choice>
+            </m:title>
+        </m:DbResponse>
+    </soap:Body>
+</soap:Envelope>
